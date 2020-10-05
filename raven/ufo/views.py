@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 
-from .models import Question
+# from .models import Question
 from .models import Event
 
 # Create your views here.
@@ -9,13 +9,23 @@ from .models import Event
 #     return HttpResponse("Hello World")
 
 def index(request):
-    events = Event.objects.all()
-    output = "<br/>".join([f"<h2>Event</h2><p>{q.description}</p>" for q in events])
-    return HttpResponse(f"<h1>All Events Page</h1>{output}")
+    context = {"event": Event.objects.all()}
+    return render(request, "ufo/index.html", context) 
+    # events = Event.objects.all()
+    # output = "<br/>".join([f"<h2>Event</h2><p>{q.description}</p>" for q in events])
+    # return HttpResponse(f"<h1>All Events Page</h1>{output}")
 
 def detail(request, description_id):
     q = get_object_or_404(Event, pk=description_id)
-    return HttpResponse(f"<h1>Details</h1>{q.description}")
+    return HttpResponse(f"<h1>Event</h1>{q.description}")
+
+def event(request, description_id):
+    q = get_object_or_404(Event, pk=description_id)
+    return HttpResponse(f"<h1>Location</h1>{q.area}")
+
+def date(request, description_id):
+    q = get_object_or_404(Event, pk=description_id)
+    return HttpResponse(f"<h1>Date</h1>{q.date}")
 
 # def index(request):
 #     questions = Question.objects.all()

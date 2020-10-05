@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Raven{% endblock %}
+{% block content %}
+<h1>All UFO Events</h1>
+<ol>
+    {% for events in event %}
+    <li>
+        <a href="{% url 'detail' events.id %}">
+            {{ events.description }}
+        </a>
+    </li><br>
+    {% empty %}
+    <li>No description</li>
+    {% endfor %}
+</ol>
+{% endblock %}
