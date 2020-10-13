@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Raven{% endblock %}
+{% block content %}
+
+<header class="header">
+    <div class="brand">
+        <h1 class="logo"><a href="{% url 'index' %}">Raven</a></h1>
+    </div>
+        <ul class="nav-links">
+            <li class="nav-link"><a href="{% url 'all_events' %}"> UFO Events</a></li>
+            <li class="nav-link"><a href="{% url 'all_locations' %}"> UFO Location</a></li>
+            <li class="nav-link"><a href="{% url 'search_location' %}"> Search Event By Location</a></li>
+            <li class="nav-link"><a href="{% url 'search_date' %}"> Search Event By Date</a></li>
+        </ul>
+</header>
+<div class="background">
+    <div class="center">
+        <h1 class="title">All UFO Location</h1>
+        <ol>
+            {% for locations in location %}
+            <li>
+                <a href="{% url 'event' locations.id %}">
+                    <p>Area: {{ locations.area }} </p>
+                </a>
+            </li><br>
+            {% empty %}
+            <li>No description</li>
+            {% endfor %}
+        </ol>
+    </div>  
+</div>
+{% endblock %}
