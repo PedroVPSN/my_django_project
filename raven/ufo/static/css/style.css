@@ -59,11 +59,13 @@ a:hover {
     margin-right: 20px;
 }
 .background {
-    background-color: #7a8369;
+    background-color: #747b5ad6;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    
 }
 .center {
     display: flex;
